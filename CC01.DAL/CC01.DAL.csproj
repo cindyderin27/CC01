@@ -48,5 +48,11 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CC01.BO\CC01.BO.csproj">
+      <Project>{103e32ea-3d97-497b-8855-cf410b9c4033}</Project>
+      <Name>CC01.BO</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
