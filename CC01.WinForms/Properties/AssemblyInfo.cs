@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("CC01")]
+[assembly: AssemblyTitle("CC01.WinForms")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CC01")]
+[assembly: AssemblyProduct("CC01.WinForms")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("3fa6ea1f-adcc-439c-86bc-e1b5ea3f5afd")]
+[assembly: Guid("a2ee92d3-3438-4e1d-8141-e0ad4e8515b3")]
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //
