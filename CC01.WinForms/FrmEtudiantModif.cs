@@ -1,7 +1,9 @@
-﻿using CC01.BO;
+﻿using CC01.BLL;
+using CC01.BO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -33,18 +35,7 @@ namespace CC01.WinForms
             dateTimePicker1.Text = etudiant.DateNais.ToString();
             txtLieu.Text = etudiant.LieuNais;
             txtContact.Text = etudiant.Contact.ToString();
-            if (etudiant.Photo != null)
-            {
-                pictureBox1.Image = Image.FromStream(new MemoryStream((byte[])etudiant.Photo));
-            }
-
-            EtudiantBLO productBLO = new ProductBLO(ConfigurationManager.AppSettings["DbFolder"]);
-
-            if (this.oldProduct == null)
-                productBLO.CreateProduct(newProduct);
-            else
-                productBLO.EditProduct(oldProduct, newProduct);
-
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -87,7 +78,7 @@ namespace CC01.WinForms
         {
             try
             {
-                checkForm();
+                //checkForm();
 
                 Etudiant newEtudiant = new Etudiant
                 (
@@ -99,6 +90,18 @@ namespace CC01.WinForms
                 long.Parse(txtContact.Text),
                  !string.IsNullOrEmpty(pictureBox1.ImageLocation) ? File.ReadAllBytes(pictureBox1.ImageLocation) : this.oldEtudiant?.Photo
                 );
+                if (newEtudiant.Photo != null)
+                {
+                    pictureBox1.Image = Image.FromStream(new MemoryStream((byte[])newEtudiant.Photo));
+                }
+
+                EtudiantBLO etudiantBLO = new EtudiantBLO(ConfigurationManager.AppSettings["DbFolder"]);
+
+                if (this.oldEtudiant == null)
+                    etudiantBLO.CreateProduct(newEtudiant);
+                else
+                    etudiantBLO.EditProduct(oldEtudiant, newEtudiant);
+
                 MessageBox.Show
                 (
                     "Save done !",

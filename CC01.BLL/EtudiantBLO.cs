@@ -47,6 +47,11 @@ namespace CC01.BLL
         {
             etudiantRepo.Set(oldEtudiant, newEtudiant);
         }
+
+        public void CreateProduct(object newEtudiant)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
