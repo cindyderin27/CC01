@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace CC01.WinForms
 {
-    public partial class Form1 : Form
+    public partial class FrmListeEtudiant : Form
     {
-        public Form1()
+        public FrmListeEtudiant()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-            this.reportViewer1.RefreshReport();
         }
     }
 }
