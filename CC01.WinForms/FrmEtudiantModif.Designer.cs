@@ -35,9 +35,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtPrenom = new System.Windows.Forms.TextBox();
             this.lblDate = new System.Windows.Forms.Label();
-            this.txtDate = new System.Windows.Forms.TextBox();
             this.lblPrenom = new System.Windows.Forms.Label();
-            this.txtLieu = new System.Windows.Forms.TextBox();
             this.lblLieu = new System.Windows.Forms.Label();
             this.txtMatricule = new System.Windows.Forms.TextBox();
             this.lblMatricule = new System.Windows.Forms.Label();
@@ -49,6 +47,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.txtLieu = new System.Windows.Forms.TextBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,18 +56,20 @@
             // 
             this.lblNom.AutoSize = true;
             this.lblNom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNom.Location = new System.Drawing.Point(409, 41);
+            this.lblNom.Location = new System.Drawing.Point(409, 85);
             this.lblNom.Name = "lblNom";
             this.lblNom.Size = new System.Drawing.Size(40, 16);
             this.lblNom.TabIndex = 0;
             this.lblNom.Text = "Nom";
+            this.lblNom.Click += new System.EventHandler(this.lblNom_Click);
             // 
             // txtNom
             // 
-            this.txtNom.Location = new System.Drawing.Point(476, 40);
+            this.txtNom.Location = new System.Drawing.Point(476, 84);
             this.txtNom.Name = "txtNom";
             this.txtNom.Size = new System.Drawing.Size(261, 20);
             this.txtNom.TabIndex = 1;
+            this.txtNom.TextChanged += new System.EventHandler(this.txtNom_TextChanged);
             // 
             // btnEnregistrer
             // 
@@ -77,9 +79,10 @@
             this.btnEnregistrer.Location = new System.Drawing.Point(62, 393);
             this.btnEnregistrer.Name = "btnEnregistrer";
             this.btnEnregistrer.Size = new System.Drawing.Size(134, 48);
-            this.btnEnregistrer.TabIndex = 2;
+            this.btnEnregistrer.TabIndex = 8;
             this.btnEnregistrer.Text = "Enregistrer";
             this.btnEnregistrer.UseVisualStyleBackColor = false;
+            this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
             // 
             // pictureBox1
             // 
@@ -96,10 +99,11 @@
             // 
             // txtPrenom
             // 
-            this.txtPrenom.Location = new System.Drawing.Point(476, 82);
+            this.txtPrenom.Location = new System.Drawing.Point(476, 124);
             this.txtPrenom.Name = "txtPrenom";
             this.txtPrenom.Size = new System.Drawing.Size(261, 20);
-            this.txtPrenom.TabIndex = 5;
+            this.txtPrenom.TabIndex = 2;
+            this.txtPrenom.TextChanged += new System.EventHandler(this.txtPrenom_TextChanged);
             // 
             // lblDate
             // 
@@ -110,31 +114,18 @@
             this.lblDate.Size = new System.Drawing.Size(138, 16);
             this.lblDate.TabIndex = 4;
             this.lblDate.Text = "Date de naissance";
-            // 
-            // txtDate
-            // 
-            this.txtDate.Location = new System.Drawing.Point(480, 269);
-            this.txtDate.Name = "txtDate";
-            this.txtDate.Size = new System.Drawing.Size(257, 20);
-            this.txtDate.TabIndex = 7;
+            this.lblDate.Click += new System.EventHandler(this.lblDate_Click);
             // 
             // lblPrenom
             // 
             this.lblPrenom.AutoSize = true;
             this.lblPrenom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrenom.Location = new System.Drawing.Point(388, 86);
+            this.lblPrenom.Location = new System.Drawing.Point(388, 128);
             this.lblPrenom.Name = "lblPrenom";
             this.lblPrenom.Size = new System.Drawing.Size(61, 16);
             this.lblPrenom.TabIndex = 6;
             this.lblPrenom.Text = "Prenom";
-            // 
-            // txtLieu
-            // 
-            this.txtLieu.Location = new System.Drawing.Point(34, 265);
-            this.txtLieu.Name = "txtLieu";
-            this.txtLieu.Size = new System.Drawing.Size(253, 20);
-            this.txtLieu.TabIndex = 9;
-            this.txtLieu.TextChanged += new System.EventHandler(this.txtLieu_TextChanged);
+            this.lblPrenom.Click += new System.EventHandler(this.lblPrenom_Click);
             // 
             // lblLieu
             // 
@@ -149,16 +140,17 @@
             // 
             // txtMatricule
             // 
-            this.txtMatricule.Location = new System.Drawing.Point(476, 131);
+            this.txtMatricule.Location = new System.Drawing.Point(476, 41);
             this.txtMatricule.Name = "txtMatricule";
             this.txtMatricule.Size = new System.Drawing.Size(261, 20);
-            this.txtMatricule.TabIndex = 11;
+            this.txtMatricule.TabIndex = 0;
+            this.txtMatricule.TextChanged += new System.EventHandler(this.txtMatricule_TextChanged);
             // 
             // lblMatricule
             // 
             this.lblMatricule.AutoSize = true;
             this.lblMatricule.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMatricule.Location = new System.Drawing.Point(378, 131);
+            this.lblMatricule.Location = new System.Drawing.Point(378, 41);
             this.lblMatricule.Name = "lblMatricule";
             this.lblMatricule.Size = new System.Drawing.Size(71, 16);
             this.lblMatricule.TabIndex = 10;
@@ -170,7 +162,8 @@
             this.txtContact.Location = new System.Drawing.Point(476, 176);
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(261, 20);
-            this.txtContact.TabIndex = 13;
+            this.txtContact.TabIndex = 3;
+            this.txtContact.TextChanged += new System.EventHandler(this.txtContact_TextChanged);
             // 
             // lblContact
             // 
@@ -188,7 +181,8 @@
             this.txtEmail.Location = new System.Drawing.Point(476, 223);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(261, 20);
-            this.txtEmail.TabIndex = 15;
+            this.txtEmail.TabIndex = 4;
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // lblEmail
             // 
@@ -199,6 +193,7 @@
             this.lblEmail.Size = new System.Drawing.Size(47, 16);
             this.lblEmail.TabIndex = 14;
             this.lblEmail.Text = "Email";
+            this.lblEmail.Click += new System.EventHandler(this.lblEmail_Click);
             // 
             // btnAnnuler
             // 
@@ -208,9 +203,10 @@
             this.btnAnnuler.Location = new System.Drawing.Point(598, 391);
             this.btnAnnuler.Name = "btnAnnuler";
             this.btnAnnuler.Size = new System.Drawing.Size(139, 50);
-            this.btnAnnuler.TabIndex = 16;
+            this.btnAnnuler.TabIndex = 9;
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.UseVisualStyleBackColor = false;
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
             // label1
             // 
@@ -231,7 +227,7 @@
             this.linkLabel1.Location = new System.Drawing.Point(179, 18);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(17, 16);
-            this.linkLabel1.TabIndex = 18;
+            this.linkLabel1.TabIndex = 7;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "X";
             // 
@@ -239,12 +235,29 @@
             // 
             this.toolTip1.IsBalloon = true;
             // 
+            // txtLieu
+            // 
+            this.txtLieu.Location = new System.Drawing.Point(34, 265);
+            this.txtLieu.Name = "txtLieu";
+            this.txtLieu.Size = new System.Drawing.Size(253, 20);
+            this.txtLieu.TabIndex = 6;
+            this.txtLieu.TextChanged += new System.EventHandler(this.txtLieu_TextChanged);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(476, 262);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(261, 20);
+            this.dateTimePicker1.TabIndex = 5;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
             // FrmEtudiantModif
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
             this.ClientSize = new System.Drawing.Size(787, 472);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAnnuler);
@@ -256,7 +269,6 @@
             this.Controls.Add(this.lblMatricule);
             this.Controls.Add(this.txtLieu);
             this.Controls.Add(this.lblLieu);
-            this.Controls.Add(this.txtDate);
             this.Controls.Add(this.lblPrenom);
             this.Controls.Add(this.txtPrenom);
             this.Controls.Add(this.lblDate);
@@ -281,9 +293,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox txtPrenom;
         private System.Windows.Forms.Label lblDate;
-        private System.Windows.Forms.TextBox txtDate;
         private System.Windows.Forms.Label lblPrenom;
-        private System.Windows.Forms.TextBox txtLieu;
         private System.Windows.Forms.Label lblLieu;
         private System.Windows.Forms.TextBox txtMatricule;
         private System.Windows.Forms.Label lblMatricule;
@@ -295,6 +305,8 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.TextBox txtLieu;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
 

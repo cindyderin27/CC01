@@ -10,10 +10,14 @@ namespace CC01.BO
     {
         public string Logo { get; set; }
         public string Nom { get; set; }
-        public int Tel { get; set; }
+        public long Tel { get; set; }
         public string Email { get; set; }
 
-        public Ecole(string logo, string nom, int tel, string email)
+        public Ecole()
+        {
+
+        }
+        public Ecole(string logo, string nom, long tel, string email)
         {
             Logo = logo;
             Nom = nom;
@@ -24,7 +28,7 @@ namespace CC01.BO
         public override bool Equals(object obj)
         {
             return obj is Ecole ecole &&
-                   Nom == ecole.Nom;
+                   Nom.Equals(ecole.Nom, StringComparison.OrdinalIgnoreCase); ;
         }
 
         public override int GetHashCode()

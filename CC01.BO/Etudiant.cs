@@ -6,32 +6,37 @@ using System.Threading.Tasks;
 
 namespace CC01.BO
 {
-    class Etudiant
+   public  class Etudiant
     {
         public string Matricule { get; set; }
         public string Nom { get; set; }
         public string PreNom { get; set; }
         public string LieuNais { get; set; }
         public string DateNais { get; set; }
-        public int Contact { get; set; }
+        public long Contact { get; set; }
         public byte[] Photo { get; set; }
         public byte[] CodeBar { get; set; }
 
-        public Etudiant(string matricule,string nom, string preNom, string lieuNais, int contact, byte[] photo, byte[] codeBar)
+        public Etudiant()
+        {
+
+        }
+        public Etudiant(string matricule,string nom, string preNom, string dateNais, string lieuNais, long contact, byte[] photo)
         {
             Matricule = matricule;
-            Nom = nom;
+            Nom = nom;           
             PreNom = preNom;
+            DateNais = dateNais;
             LieuNais = lieuNais;
             Contact = contact;
             Photo = photo;
-            CodeBar = codeBar;
+           
         }
 
         public override bool Equals(object obj)
         {
             return obj is Etudiant etudiant&&
-                Matricule==etudiant.Matricule;
+               Matricule.Equals(etudiant.Matricule, StringComparison.OrdinalIgnoreCase); 
         }
 
         public override int GetHashCode()
