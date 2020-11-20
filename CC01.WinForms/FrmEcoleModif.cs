@@ -44,7 +44,7 @@ namespace CC01.WinForms
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
-            pictureBox1.ImageLocation = null;
+           
         }
 
         private void btnAnnuler_Click(object sender, EventArgs e)
@@ -124,13 +124,7 @@ namespace CC01.WinForms
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Choose a picture";
-            ofd.Filter = "Image files|*.jpg;*.jpeg;*.png;*.gif";
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                pictureBox1.ImageLocation = ofd.FileName;
-            }
+            
         }
 
     }

@@ -7,11 +7,11 @@ using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace CC01.WinForms
 {
     public partial class FrmListeEtudiant : Form
@@ -121,7 +121,41 @@ namespace CC01.WinForms
                 Form f = new FrmPreview("EtudiantListe.rdlc", items);
                 f.Show();
         }
-        
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnEnregistrer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblMatricule_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMatricule_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblNom_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNom_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FrmListeEtudiant_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
