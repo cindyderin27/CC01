@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
-namespace CC01.WinForms
+
+namespace CC01.BLL
 {
-    [Serializable]
-    internal class TypingException : Exception
+    
+   public class TypingException : Exception
     {
         public TypingException()
         {
@@ -18,8 +18,6 @@ namespace CC01.WinForms
         {
         }
 
-        protected TypingException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+       
     }
 }

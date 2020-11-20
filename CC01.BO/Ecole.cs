@@ -8,10 +8,12 @@ namespace CC01.BO
 {
     public class Ecole
     {
+        
+        public string NomEcole { get; set; }
+       
+        public string EmailEcole { get; set; }
+        public long ContactEcole { get; set; }
         public string Logo { get; set; }
-        public string Nom { get; set; }
-        public long Tel { get; set; }
-        public string Email { get; set; }
 
         public Ecole()
         {
@@ -20,20 +22,20 @@ namespace CC01.BO
         public Ecole(string logo, string nom, long tel, string email)
         {
             Logo = logo;
-            Nom = nom;
-            Tel = tel;
-            Email = email;
+            NomEcole = nom;
+            ContactEcole = tel;
+            EmailEcole = email;
         }
 
         public override bool Equals(object obj)
         {
             return obj is Ecole ecole &&
-                   Nom.Equals(ecole.Nom, StringComparison.OrdinalIgnoreCase); ;
+                   NomEcole.Equals(ecole.NomEcole, StringComparison.OrdinalIgnoreCase); ;
         }
 
         public override int GetHashCode()
         {
-            return 217408413 + EqualityComparer<string>.Default.GetHashCode(Nom);
+            return 217408413 + EqualityComparer<string>.Default.GetHashCode(NomEcole);
         }
     }
 }

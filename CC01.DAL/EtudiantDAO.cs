@@ -13,7 +13,7 @@ namespace CC01.DAL
     public class EtudiantDAO
     {
         private static List<Etudiant> etudiants;
-        private const string FILE_NAME = @"products.json";
+        private const string FILE_NAME = @"etudiants.json";
         private readonly string dbFolder;
         private FileInfo file;
         public EtudiantDAO(string dbFolder)

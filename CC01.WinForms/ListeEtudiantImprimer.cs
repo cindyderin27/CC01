@@ -19,8 +19,12 @@ namespace CC01.WinForms
         public string NomEcole { get; set; }
         public string EmailEcole { get; set; }
         public long ContactEcole { get; set; }
-        public byte[] Logo { get; set; }
+        public byte[] LogoEcole{ get; set; }
+       
+        public ListeEtudiantImprimer()
+        {
 
+        }
         public ListeEtudiantImprimer(string nom, string prenom, string matricule,
             long contact, string email, DateTime dateNais, string lieu,
             byte[] photo, string nomEcole, string emailEcole,
@@ -37,7 +41,9 @@ namespace CC01.WinForms
             NomEcole = nomEcole;
             EmailEcole = emailEcole;
             ContactEcole = contactEcole;
-            Logo = logo;
+            LogoEcole = logo;
         }
+
+        
     }
 }

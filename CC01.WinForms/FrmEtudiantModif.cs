@@ -41,12 +41,18 @@ namespace CC01.WinForms
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            //this.reportViewer1.RefreshReport();
+          
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Choose a picture";
+            ofd.Filter = "Image files|*.jpg;*.jpeg;*.png;*.gif";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.ImageLocation = ofd.FileName;
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -78,15 +84,16 @@ namespace CC01.WinForms
         {
             try
             {
-                //checkForm();
+                checkForm();
 
                 Etudiant newEtudiant = new Etudiant
                 (
-                txtMatricule.Text,
+                txtMatricule.Text.ToUpper(),
                 txtNom.Text,
                 txtPrenom.Text,
                 dateTimePicker1.Text,
                 txtLieu.Text,
+                txtEmail.Text,
                 long.Parse(txtContact.Text),
                  !string.IsNullOrEmpty(pictureBox1.ImageLocation) ? File.ReadAllBytes(pictureBox1.ImageLocation) : this.oldEtudiant?.Photo
                 );
@@ -98,9 +105,9 @@ namespace CC01.WinForms
                 EtudiantBLO etudiantBLO = new EtudiantBLO(ConfigurationManager.AppSettings["DbFolder"]);
 
                 if (this.oldEtudiant == null)
-                    etudiantBLO.CreateProduct(newEtudiant);
+                    etudiantBLO.CreateEtudiant(newEtudiant);
                 else
-                    etudiantBLO.EditProduct(oldEtudiant, newEtudiant);
+                    etudiantBLO.EditEtudiant(oldEtudiant, newEtudiant);
 
                 MessageBox.Show
                 (
@@ -157,7 +164,7 @@ namespace CC01.WinForms
             }
             catch (Exception ex)
             {
-               // ex.WriteToFile();
+               ex.WriteToFile();
                 MessageBox.Show
                (
                    "An error occurred! Please try again later.",
@@ -166,6 +173,25 @@ namespace CC01.WinForms
                    MessageBoxIcon.Error
                );
             }
+        }
+        private void checkForm()
+        {
+            string text = string.Empty;
+            txtMatricule.BackColor = Color.White;
+            txtNom.BackColor = Color.White;
+            if (string.IsNullOrWhiteSpace(txtMatricule.Text))
+            {
+                text += "- Please enter the reference ! \n";
+                txtMatricule.BackColor = Color.Pink;
+            }
+            if (string.IsNullOrWhiteSpace(txtNom.Text))
+            {
+                text += "- Please enter the name ! \n";
+                txtNom.BackColor = Color.Pink;
+            }
+
+            if (!string.IsNullOrEmpty(text))
+                throw new TypingException(text);
         }
 
         private void lblNom_Click(object sender, EventArgs e)
@@ -195,7 +221,7 @@ namespace CC01.WinForms
 
         private void btnAnnuler_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void txtContact_TextChanged(object sender, EventArgs e)
@@ -226,6 +252,11 @@ namespace CC01.WinForms
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            pictureBox1.ImageLocation = null;
         }
     }
 }

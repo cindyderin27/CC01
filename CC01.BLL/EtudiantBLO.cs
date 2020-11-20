@@ -16,26 +16,26 @@ namespace CC01.BLL
         {
             etudiantRepo = new EtudiantDAO(dbFolder);
         }
-        public void CreateProduct(Etudiant etudiant)
+        public void CreateEtudiant(Etudiant etudiant)
         {
             etudiantRepo.Add(etudiant);
         }
 
-        public void DeleteProduct(Etudiant etudiant)
+        public void DeleteEtudiant(Etudiant etudiant)
         {
             etudiantRepo.Remove(etudiant);
         }
 
 
-        public IEnumerable<Etudiant> GetAllProducts()
+        public IEnumerable<Etudiant> GetAllEtudiants()
         {
             return etudiantRepo.Find();
         }
 
 
-        public IEnumerable<Etudiant> GetByReference(string reference)
+        public IEnumerable<Etudiant> GetByMatricule(string matricule)
         {
-            return etudiantRepo.Find(x => x.Matricule == reference);
+            return etudiantRepo.Find(x => x.Matricule == matricule);
         }
 
         public IEnumerable<Etudiant> GetBy(Func<Etudiant, bool> predicate)
@@ -43,15 +43,20 @@ namespace CC01.BLL
             return etudiantRepo.Find(predicate);
         }
 
-        public void EditProduct(Etudiant oldEtudiant, Etudiant newEtudiant)
+        public void EditEtudiant(Etudiant oldEtudiant, Etudiant newEtudiant)
         {
             etudiantRepo.Set(oldEtudiant, newEtudiant);
         }
 
-        public void CreateProduct(object newEtudiant)
-        {
-            throw new NotImplementedException();
-        }
+        //public void CreateEtudiant(object newEtudiant)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public void DeleteEtudiant(Etudiant etudiant)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
 

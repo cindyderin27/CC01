@@ -95,6 +95,7 @@
             this.btnCreerEcole.TabIndex = 11;
             this.btnCreerEcole.Text = "Créer";
             this.btnCreerEcole.UseVisualStyleBackColor = true;
+            this.btnCreerEcole.Click += new System.EventHandler(this.btnCreerEcole_Click);
             // 
             // dataGridView2
             // 
