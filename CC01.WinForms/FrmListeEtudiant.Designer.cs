@@ -63,6 +63,7 @@
             this.txtRecherch.Name = "txtRecherch";
             this.txtRecherch.Size = new System.Drawing.Size(689, 20);
             this.txtRecherch.TabIndex = 10;
+            this.txtRecherch.TextChanged += new System.EventHandler(this.txtRecherch_TextChanged);
             // 
             // dataGridView1
             // 

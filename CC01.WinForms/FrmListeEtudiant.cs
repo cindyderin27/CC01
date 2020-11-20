@@ -156,6 +156,11 @@ namespace CC01.WinForms
         {
 
         }
+
+        private void txtRecherch_TextChanged(object sender, EventArgs e)
+        {
+            loadData();
+        }
     }
 
 }
