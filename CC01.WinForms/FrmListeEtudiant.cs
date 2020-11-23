@@ -16,8 +16,10 @@ namespace CC01.WinForms
 {
     public partial class FrmListeEtudiant : Form
     {
+        private Action callback;
         private EtudiantBLO etudiantBLO;
         private EcoleBLO ecoleBLO;
+        private Etudiant oldEtu;
         public FrmListeEtudiant()
         {
 
@@ -25,6 +27,22 @@ namespace CC01.WinForms
             dataGridView1.AutoGenerateColumns = false;
             etudiantBLO = new EtudiantBLO(ConfigurationManager.AppSettings["DbFolder"]);
             ecoleBLO = new EcoleBLO(ConfigurationManager.AppSettings["DbFolder"]);
+        }
+        public FrmListeEtudiant(Action callback) : this()
+        {
+            this.callback = callback;
+        }
+        public FrmListeEtudiant(Etudiant etudiant, Action callback) : this(callback)
+        {
+            this.oldEtu = etudiant;
+            txtMatricule.Text = etudiant.Matricule;
+            txtNom.Text = etudiant.Nom;
+            txtPrenom.Text = etudiant.PreNom;
+            dateTimePicker1.Text = etudiant.DateNais;
+            txtLieu.Text = etudiant.LieuNais;
+            txtEmail.Text = etudiant.Email;
+            txtContact.Text = etudiant.Contact.ToString();
+            pictureBox1.Image = etudiant.Photo != null ? Image.FromStream(new MemoryStream(etudiant.Photo)) : null;
         }
         private void loadData()
         {
@@ -45,11 +63,6 @@ namespace CC01.WinForms
             loadData();
         }
 
-        private void btnCreer_Click(object sender, EventArgs e)
-        {
-            Form f = new FrmEtudiantModif(loadData);
-            f.Show();
-        }
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
@@ -57,14 +70,147 @@ namespace CC01.WinForms
             {
                 for (int i = 0; i < dataGridView1.SelectedRows.Count; i++)
                 {
-                    Form f = new FrmEtudiantModif
-                    (
-                        dataGridView1.SelectedRows[i].DataBoundItem as Etudiant,
-                        loadData
-                    );
-                    f.ShowDialog();
+                    Form f = new FrmListeEtudiant
+                        (
+                            dataGridView1.SelectedRows[i].DataBoundItem as Etudiant,
+                            loadData
+                        );
+                    this.Hide();
+                    f.Show();
+                    f.WindowState = FormWindowState.Maximized;
                 }
+
             }
+
+         
+           
+        }
+
+        private void btnEnregistrer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                checkForm();
+
+                Etudiant newEtu = new Etudiant(
+                    txtMatricule.Text.ToUpper(),
+                    txtNom.Text,
+                    txtPrenom.Text,
+                    dateTimePicker1.Text,
+                    txtLieu.Text,
+                    txtEmail.Text,
+                    long.Parse(txtContact.Text),
+                    !String.IsNullOrEmpty(pictureBox1.ImageLocation) ? File.ReadAllBytes(pictureBox1.ImageLocation) : this.oldEtu?.Photo
+                    );
+
+                EtudiantBLO etuBlo = new EtudiantBLO(ConfigurationManager.AppSettings["DbFolder"]);
+                if (this.oldEtu == null)
+                {
+                    etuBlo.CreateEtudiant(newEtu);
+                }
+                else
+                {
+                    etuBlo.EditEtudiant(oldEtu, newEtu);
+                }
+                etuBlo.CreateEtudiant(newEtu);
+                MessageBox.Show(
+                    "Enregistrement éffectué !",
+                     "Confirmé",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Information
+                    );
+                if (callback != null)
+                    callback();
+
+                if (oldEtu != null)
+                    Close();
+                txtMatricule.Clear();
+                txtNom.Clear();
+                txtPrenom.Clear();
+                dateTimePicker1.Refresh();
+                txtLieu.Clear();
+                txtEmail.Clear();
+                txtContact.Clear();
+                txtMatricule.Focus();
+            }
+            catch (TypingException ex)
+            {
+
+                MessageBox.Show
+                    (
+                    ex.Message,
+                    "Typing error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                   );
+            }
+            catch (DuplicateNameException ex)
+            {
+
+                MessageBox.Show
+                    (
+                    ex.Message,
+                    "Duplicate error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                   );
+            }
+            catch (KeyNotFoundException ex)
+            {
+
+                MessageBox.Show
+                    (
+                    ex.Message,
+                    "Not found error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                   );
+            }
+
+            catch (Exception ex)
+            {
+                ex.WriteToFile();
+                //using (StreamWriter sw =new StreamWriter("app.log", true))
+                // {
+                //   sw.WriteLine(ex.ToString());
+                //}
+                MessageBox.Show
+                    (
+                    "An Error occured! Please try again",
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                   );
+            }
+
+            loadData();
+        }
+        private void checkForm()
+        {
+            string text = string.Empty;
+            txtMatricule.BackColor = Color.White;
+            txtNom.BackColor = Color.White;
+            if (string.IsNullOrWhiteSpace(txtMatricule.Text))
+            {
+                text += "-------------Please enter the reference!\n";
+                txtMatricule.BackColor = Color.Pink;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNom.Text))
+            {
+                text += "-------- Please enter the name! \n";
+                txtNom.BackColor = Color.Pink;
+            }
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                throw new TypingException(text);
+            }
+        }
+
+        private void btnAnnuler_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void btnSupprimer_Click(object sender, EventArgs e)
@@ -87,15 +233,10 @@ namespace CC01.WinForms
                 }
             }
         }
-        private void btnAnnuler_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
 
         private void btnImprimer_Click(object sender, EventArgs e)
         {
             List<ListeEtudiantImprimer> items = new List<ListeEtudiantImprimer>();
-            Ecole ecole = ecoleBLO.GetEcole();
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 Etudiant p = dataGridView1.Rows[i].DataBoundItem as Etudiant;
@@ -103,67 +244,56 @@ namespace CC01.WinForms
                 (
                 new ListeEtudiantImprimer
                 (
+                    p.Photo,
                     p.Matricule,
                     p.Nom,
                     p.PreNom,
-                    p.Contact,
-                    p.LieuNais,
                     DateTime.Parse(p.DateNais),
-                    p.Email,
-                    p.Photo,
-                    ecole?.NomEcole,
-                    ecole?.EmailEcole,
-                    Byte.Parse(ecole?.ContactEcole.ToString()),
-                    !string.IsNullOrEmpty(ecole?.Logo) ? File.ReadAllBytes(ecole?.Logo) : null
+                    p.LieuNais,
+                    p.Contact,
+                    p.Email       
+
                     )
                 );
+
             }
-                Form f = new FrmPreview("EtudiantListe.rdlc", items);
-                f.Show();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void btnEnregistrer_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblMatricule_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtMatricule_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblNom_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtNom_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FrmListeEtudiant_Load_1(object sender, EventArgs e)
-        {
-
+            Form f = new FrmPreview("EtudiantListe.rdlc", items);
+            f.Show();
         }
 
         private void txtRecherch_TextChanged(object sender, EventArgs e)
         {
             loadData();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Choisissez la photo";
+            ofd.Filter = "Image File|*.jpg;*.jpeg;*.png;*.gif";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.ImageLocation = ofd.FileName;
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnModifier_Click(sender, e);
+        }
+
+        private void FrmListeEtudiant_Load_1(object sender, EventArgs e)
+        {
+            loadData();
+        }
     }
 
-}
+ }
 
     
 

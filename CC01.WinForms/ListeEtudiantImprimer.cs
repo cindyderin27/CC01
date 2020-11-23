@@ -9,39 +9,31 @@ namespace CC01.WinForms
     class ListeEtudiantImprimer
     {
         public string Nom { get; set; }
-        public string Prenom { get; set; }
+        public string PreNom { get; set; }
         public string Matricule   { get; set; }
         public long Contact { get; set; }
         public string Email { get; set; }
         public DateTime DateNais { get; set; }
-        public string Lieu { get; set; }
+        public string LieuNais { get; set; }
         public byte[] Photo { get; set; }
-        public string NomEcole { get; set; }
-        public string EmailEcole { get; set; }
-        public long ContactEcole { get; set; }
-        public byte[] LogoEcole{ get; set; }
+        
        
         public ListeEtudiantImprimer()
         {
 
         }
-        public ListeEtudiantImprimer(string nom, string prenom, string matricule,
-            long contact, string email, DateTime dateNais, string lieu,
-            byte[] photo, string nomEcole, string emailEcole,
-            long contactEcole, byte[] logo)
+        public ListeEtudiantImprimer(byte[] photo,string matricule, string nom, string prenom,
+              DateTime dateNais, string email, long contact, string lieu
+          )
         {
-            Nom = nom;
-            Prenom = prenom;
+            Photo = photo;
             Matricule = matricule;
+            Nom = nom;
+            PreNom = prenom;
+            DateNais = dateNais;
+            LieuNais = lieu;
             Contact = contact;
             Email = email;
-            DateNais = dateNais;
-            Lieu = lieu;
-            Photo = photo;
-            NomEcole = nomEcole;
-            EmailEcole = emailEcole;
-            ContactEcole = contactEcole;
-            LogoEcole = logo;
         }
 
         

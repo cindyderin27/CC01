@@ -48,9 +48,9 @@ namespace CC01.DAL
             var oldIndex = etudiants.IndexOf(oldEtudiant);
             var newIndex = etudiants.IndexOf(newEtudiant);
             if (oldIndex < 0)
-                throw new KeyNotFoundException("The product doesn't exists !");
+                throw new KeyNotFoundException("The student doesn't exists !");
             if (newIndex >= 0 && oldIndex != newIndex)
-                throw new DuplicateNameException("This product reference already exists !");
+                throw new DuplicateNameException("This student reference already exists !");
             etudiants[oldIndex] = newEtudiant;
             Save();
         }
@@ -59,7 +59,7 @@ namespace CC01.DAL
         {
             var index = etudiants.IndexOf(etudiant);
             if (index >= 0)
-                throw new DuplicateNameException("This product reference already exists !");
+                throw new DuplicateNameException("This student matricule already exists !");
             etudiants.Add(etudiant);
             Save();
         }

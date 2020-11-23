@@ -31,15 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.etudiantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ecoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.créerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ecoleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.creerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
@@ -68,31 +66,19 @@
             this.fichierToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.fichierToolStripMenuItem.Text = "Fichier";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
             // etudiantToolStripMenuItem
             // 
             this.etudiantToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.créerToolStripMenuItem,
             this.listeToolStripMenuItem});
             this.etudiantToolStripMenuItem.Name = "etudiantToolStripMenuItem";
             this.etudiantToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.etudiantToolStripMenuItem.Text = "Etudiant";
-            this.etudiantToolStripMenuItem.Click += new System.EventHandler(this.etudiantToolStripMenuItem_Click);
-            // 
-            // ecoleToolStripMenuItem
-            // 
-            this.ecoleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listeToolStripMenuItem1,
-            this.creerToolStripMenuItem});
-            this.ecoleToolStripMenuItem.Name = "ecoleToolStripMenuItem";
-            this.ecoleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ecoleToolStripMenuItem.Text = "Ecole";
-            // 
-            // créerToolStripMenuItem
-            // 
-            this.créerToolStripMenuItem.Name = "créerToolStripMenuItem";
-            this.créerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.créerToolStripMenuItem.Text = "Créer";
-            this.créerToolStripMenuItem.Click += new System.EventHandler(this.créerToolStripMenuItem_Click);
+          //  this.etudiantToolStripMenuItem.Click += new System.EventHandler(this.etudiantToolStripMenuItem_Click);
             // 
             // listeToolStripMenuItem
             // 
@@ -100,6 +86,19 @@
             this.listeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.listeToolStripMenuItem.Text = "Liste";
             this.listeToolStripMenuItem.Click += new System.EventHandler(this.listeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // ecoleToolStripMenuItem
+            // 
+            this.ecoleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.listeToolStripMenuItem1});
+            this.ecoleToolStripMenuItem.Name = "ecoleToolStripMenuItem";
+            this.ecoleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ecoleToolStripMenuItem.Text = "Ecole";
             // 
             // listeToolStripMenuItem1
             // 
@@ -112,23 +111,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // creerToolStripMenuItem
-            // 
-            this.creerToolStripMenuItem.Name = "creerToolStripMenuItem";
-            this.creerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.creerToolStripMenuItem.Text = "Creer";
-            this.creerToolStripMenuItem.Click += new System.EventHandler(this.creerToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // statusStrip1
             // 
@@ -180,12 +162,10 @@
         private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem etudiantToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem créerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem ecoleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listeToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem creerToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;

@@ -17,17 +17,7 @@ namespace CC01.WinForms
             InitializeComponent();
         }
 
-        private void etudiantToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void créerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form f = new FrmEtudiantModif();
-            f.Show();
-        }
-
+        
         private void listeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form f = new FrmListeEtudiant();
@@ -36,8 +26,6 @@ namespace CC01.WinForms
 
         private void creerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form f = new FrmEcoleModif();
-            f.Show();
         }
 
         private void listeToolStripMenuItem1_Click(object sender, EventArgs e)
