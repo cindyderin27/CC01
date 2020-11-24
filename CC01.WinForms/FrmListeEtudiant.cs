@@ -181,11 +181,12 @@ namespace CC01.WinForms
                     MessageBoxIcon.Error
                    );
             }
+            loadData();
             QRCoder.QRCodeGenerator qr = new QRCoder.QRCodeGenerator();
             var mydata = qr.CreateQrCode(txtMatricule.Text,QRCoder.QRCodeGenerator.ECCLevel.H);
             var code = new QRCoder.QRCode(mydata);
             pictureBoxQR.Image = code.GetGraphic(50);
-            loadData();
+           
         }
 
         private void checkForm()
@@ -249,13 +250,7 @@ namespace CC01.WinForms
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Choisissez la photo";
-            ofd.Filter = "Image File|*.jpg;*.jpeg;*.png;*.gif";
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                pictureBox1.ImageLocation = ofd.FileName;
-            }
+            
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -300,6 +295,22 @@ namespace CC01.WinForms
             }
             Form f = new FrmPreview("EtudiantListe.rdlc", items);
             f.Show();
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Choisissez la photo";
+            ofd.Filter = "Image File|*.jpg;*.jpeg;*.png;*.gif";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.ImageLocation = ofd.FileName;
+            }
+        }
+
+        private void btnAnnuler_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
         

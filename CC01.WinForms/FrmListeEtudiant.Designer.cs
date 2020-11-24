@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecherch = new System.Windows.Forms.Label();
             this.txtRecherch = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -54,6 +54,9 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.txtNom = new System.Windows.Forms.TextBox();
             this.lblNom = new System.Windows.Forms.Label();
+            this.pictureBoxQR = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,8 +65,6 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pictureBoxQR = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxQR)).BeginInit();
@@ -98,6 +99,7 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column9,
             this.Column8,
             this.Column1,
             this.Column2,
@@ -109,8 +111,8 @@
             this.dataGridView1.Location = new System.Drawing.Point(732, 83);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(460, 404);
             this.dataGridView1.TabIndex = 11;
@@ -169,6 +171,7 @@
             this.btnAnnuler.TabIndex = 9;
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.UseVisualStyleBackColor = true;
+            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click_1);
             // 
             // linkLabel1
             // 
@@ -203,6 +206,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
             // dateTimePicker1
             // 
@@ -323,6 +327,34 @@
             this.lblNom.TabIndex = 22;
             this.lblNom.Text = "Nom";
             // 
+            // pictureBoxQR
+            // 
+            this.pictureBoxQR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxQR.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxQR.Location = new System.Drawing.Point(593, 57);
+            this.pictureBoxQR.Name = "pictureBoxQR";
+            this.pictureBoxQR.Size = new System.Drawing.Size(131, 82);
+            this.pictureBoxQR.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxQR.TabIndex = 35;
+            this.pictureBoxQR.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(593, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 16);
+            this.label2.TabIndex = 36;
+            this.label2.Text = "Qr Code";
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "QrCode";
+            this.Column9.HeaderText = "QrCode";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
             // Column8
             // 
             this.Column8.DataPropertyName = "Photo";
@@ -382,27 +414,6 @@
             this.Column7.HeaderText = "Lieu";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
-            // 
-            // pictureBoxQR
-            // 
-            this.pictureBoxQR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxQR.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxQR.Location = new System.Drawing.Point(593, 57);
-            this.pictureBoxQR.Name = "pictureBoxQR";
-            this.pictureBoxQR.Size = new System.Drawing.Size(131, 82);
-            this.pictureBoxQR.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxQR.TabIndex = 35;
-            this.pictureBoxQR.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(593, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 16);
-            this.label2.TabIndex = 36;
-            this.label2.Text = "Qr Code";
             // 
             // FrmListeEtudiant
             // 
@@ -475,6 +486,9 @@
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.TextBox txtNom;
         private System.Windows.Forms.Label lblNom;
+        private System.Windows.Forms.PictureBox pictureBoxQR;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewImageColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -483,7 +497,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.PictureBox pictureBoxQR;
-        private System.Windows.Forms.Label label2;
     }
 }
