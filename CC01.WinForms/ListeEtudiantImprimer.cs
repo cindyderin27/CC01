@@ -16,6 +16,7 @@ namespace CC01.WinForms
         public DateTime DateNais { get; set; }
         public string LieuNais { get; set; }
         public byte[] Photo { get; set; }
+       // public byte[] Logo { get; set; }
         
        
         public ListeEtudiantImprimer()
@@ -27,6 +28,7 @@ namespace CC01.WinForms
           )
         {
             Photo = photo;
+            //Logo = logo;
             Matricule = matricule;
             Nom = nom;
             PreNom = prenom;

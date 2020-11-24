@@ -62,15 +62,17 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBoxQR = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxQR)).BeginInit();
             this.SuspendLayout();
             // 
             // lblRecherch
             // 
             this.lblRecherch.AutoSize = true;
             this.lblRecherch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecherch.Location = new System.Drawing.Point(617, 38);
+            this.lblRecherch.Location = new System.Drawing.Point(729, 31);
             this.lblRecherch.Name = "lblRecherch";
             this.lblRecherch.Size = new System.Drawing.Size(88, 16);
             this.lblRecherch.TabIndex = 0;
@@ -78,11 +80,10 @@
             // 
             // txtRecherch
             // 
-            this.txtRecherch.Location = new System.Drawing.Point(611, 57);
+            this.txtRecherch.Location = new System.Drawing.Point(732, 57);
             this.txtRecherch.Name = "txtRecherch";
             this.txtRecherch.Size = new System.Drawing.Size(460, 20);
             this.txtRecherch.TabIndex = 10;
-            this.txtRecherch.TextChanged += new System.EventHandler(this.txtRecherch_TextChanged);
             // 
             // dataGridView1
             // 
@@ -104,7 +105,7 @@
             this.Column5,
             this.Column6,
             this.Column7});
-            this.dataGridView1.Location = new System.Drawing.Point(611, 83);
+            this.dataGridView1.Location = new System.Drawing.Point(732, 83);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -117,7 +118,7 @@
             // btnEnregistrer
             // 
             this.btnEnregistrer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEnregistrer.Location = new System.Drawing.Point(39, 445);
+            this.btnEnregistrer.Location = new System.Drawing.Point(3, 445);
             this.btnEnregistrer.Name = "btnEnregistrer";
             this.btnEnregistrer.Size = new System.Drawing.Size(92, 31);
             this.btnEnregistrer.TabIndex = 8;
@@ -128,7 +129,7 @@
             // btnModifier
             // 
             this.btnModifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModifier.Location = new System.Drawing.Point(1117, 137);
+            this.btnModifier.Location = new System.Drawing.Point(220, 445);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(92, 31);
             this.btnModifier.TabIndex = 12;
@@ -139,7 +140,7 @@
             // btnSupprimer
             // 
             this.btnSupprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSupprimer.Location = new System.Drawing.Point(1117, 200);
+            this.btnSupprimer.Location = new System.Drawing.Point(339, 445);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(92, 31);
             this.btnSupprimer.TabIndex = 13;
@@ -150,24 +151,23 @@
             // btnImprimer
             // 
             this.btnImprimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimer.Location = new System.Drawing.Point(1117, 256);
+            this.btnImprimer.Location = new System.Drawing.Point(451, 445);
             this.btnImprimer.Name = "btnImprimer";
             this.btnImprimer.Size = new System.Drawing.Size(92, 31);
             this.btnImprimer.TabIndex = 14;
             this.btnImprimer.Text = "Imprimer";
             this.btnImprimer.UseVisualStyleBackColor = true;
-            this.btnImprimer.Click += new System.EventHandler(this.btnImprimer_Click);
+            this.btnImprimer.Click += new System.EventHandler(this.btnImprimer_Click_1);
             // 
             // btnAnnuler
             // 
             this.btnAnnuler.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAnnuler.Location = new System.Drawing.Point(314, 445);
+            this.btnAnnuler.Location = new System.Drawing.Point(111, 445);
             this.btnAnnuler.Name = "btnAnnuler";
             this.btnAnnuler.Size = new System.Drawing.Size(92, 31);
             this.btnAnnuler.TabIndex = 9;
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.UseVisualStyleBackColor = true;
-            this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
             // 
             // linkLabel1
             // 
@@ -198,11 +198,10 @@
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Location = new System.Drawing.Point(12, 54);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(151, 177);
+            this.pictureBox1.Size = new System.Drawing.Size(131, 82);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // dateTimePicker1
             // 
@@ -327,6 +326,7 @@
             // 
             this.Column8.DataPropertyName = "Photo";
             this.Column8.HeaderText = "Photo";
+            this.Column8.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
             this.Column8.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -382,12 +382,24 @@
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             // 
+            // pictureBoxQR
+            // 
+            this.pictureBoxQR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxQR.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxQR.Location = new System.Drawing.Point(593, 57);
+            this.pictureBoxQR.Name = "pictureBoxQR";
+            this.pictureBoxQR.Size = new System.Drawing.Size(131, 82);
+            this.pictureBoxQR.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxQR.TabIndex = 35;
+            this.pictureBoxQR.TabStop = false;
+            // 
             // FrmListeEtudiant
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumAquamarine;
             this.ClientSize = new System.Drawing.Size(1237, 499);
+            this.Controls.Add(this.pictureBoxQR);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.lblEmail);
@@ -418,6 +430,7 @@
             this.Load += new System.EventHandler(this.FrmListeEtudiant_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxQR)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,5 +471,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.PictureBox pictureBoxQR;
     }
 }

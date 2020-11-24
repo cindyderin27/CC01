@@ -81,12 +81,10 @@ namespace CC01.WinForms
                 }
 
             }
-
-         
-           
         }
 
-        private void btnEnregistrer_Click(object sender, EventArgs e)
+         
+        private void btnEnregistrer_Click(object sender, EventArgs e)   
         {
             try
             {
@@ -170,10 +168,10 @@ namespace CC01.WinForms
             catch (Exception ex)
             {
                 ex.WriteToFile();
-                //using (StreamWriter sw =new StreamWriter("app.log", true))
-                // {
-                //   sw.WriteLine(ex.ToString());
-                //}
+                using (StreamWriter sw =new StreamWriter("app.log", true))
+                 {
+                  sw.WriteLine(ex.ToString());
+                }
                 MessageBox.Show
                     (
                     "An Error occured! Please try again",
@@ -182,9 +180,13 @@ namespace CC01.WinForms
                     MessageBoxIcon.Error
                    );
             }
-
+            QRCoder.QRCodeGenerator qr = new QRCoder.QRCodeGenerator();
+            var mydata = qr.CreateQrCode(txtMatricule.Text,QRCoder.QRCodeGenerator.ECCLevel.H);
+            var code = new QRCoder.QRCode(mydata);
+            pictureBoxQR.Image = code.GetGraphic(50);
             loadData();
         }
+
         private void checkForm()
         {
             string text = string.Empty;
@@ -236,29 +238,7 @@ namespace CC01.WinForms
 
         private void btnImprimer_Click(object sender, EventArgs e)
         {
-            List<ListeEtudiantImprimer> items = new List<ListeEtudiantImprimer>();
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
-            {
-                Etudiant p = dataGridView1.Rows[i].DataBoundItem as Etudiant;
-                items.Add
-                (
-                new ListeEtudiantImprimer
-                (
-                    p.Photo,
-                    p.Matricule,
-                    p.Nom,
-                    p.PreNom,
-                    DateTime.Parse(p.DateNais),
-                    p.LieuNais,
-                    p.Contact,
-                    p.Email       
-
-                    )
-                );
-
-            }
-            Form f = new FrmPreview("EtudiantListe.rdlc", items);
-            f.Show();
+           
         }
 
         private void txtRecherch_TextChanged(object sender, EventArgs e)
@@ -291,9 +271,40 @@ namespace CC01.WinForms
         {
             loadData();
         }
-    }
 
- }
+        private void btnImprimer_Click_1(object sender, EventArgs e)
+        {
+            List<ListeEtudiantImprimer> items = new List<ListeEtudiantImprimer>();
+            //Ecole ecole = ecoleBLO.GetEcole();
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                Etudiant p = dataGridView1.Rows[i].DataBoundItem as Etudiant;
+                items.Add
+                (
+                new ListeEtudiantImprimer
+                (
+                    p.Photo,
+                    
+                    p.Matricule,
+                    p.Nom,
+                    p.PreNom,
+                    DateTime.Parse(p.DateNais),
+                    p.LieuNais,
+                    p.Contact,
+                    p.Email
+
+                    )
+                );
+
+            }
+            Form f = new FrmPreview("EtudiantListe.rdlc", items);
+            f.Show();
+        }
+    }
+        
+}
+
+ 
 
     
 

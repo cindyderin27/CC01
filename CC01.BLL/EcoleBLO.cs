@@ -11,49 +11,70 @@ namespace CC01.BLL
 {
     public class EcoleBLO
     {
-        private EcoleDAO ecoleRepo;
+       EcoleDAO ecoleRepo;
         private string dbFolder;
         public EcoleBLO(string dbFolder)
         {
             this.dbFolder = dbFolder;
             ecoleRepo = new EcoleDAO(dbFolder);
         }
-        public void CreateEcole(Ecole oldEcole, Ecole newEcole)
+        public void CreateEcole(Ecole newEcole)
         {
             string filename = null;
-            if (!string.IsNullOrEmpty(newEcole.Logo))
+            if (!string.IsNullOrEmpty(newEcole.Logo.ToString()))
             {
-                string ext = Path.GetExtension(newEcole.Logo);
+                string ext = Path.GetExtension(newEcole.Logo.ToString());
                 filename = Guid.NewGuid().ToString() + ext;
-                FileInfo fileSource = new FileInfo(newEcole.Logo);
+                FileInfo fileSource = new FileInfo(newEcole.Logo.ToString());
                 string filePath = Path.Combine(dbFolder, "logo", filename);
                 FileInfo fileDest = new FileInfo(filePath);
                 if (!fileDest.Directory.Exists)
                     fileDest.Directory.Create();
                 fileSource.CopyTo(fileDest.FullName);
             }
-            newEcole.Logo = filename;
+           // newEcole.Logo = filename;
             ecoleRepo.Add(newEcole);
 
-            if (!string.IsNullOrEmpty(oldEcole.Logo))
-                File.Delete(oldEcole.Logo);
+            if (!string.IsNullOrEmpty(newEcole.Logo.ToString()))
+                File.Delete(newEcole.Logo.ToString());
         }
 
-        public object Get(Func<object, bool> p)
+        //public Ecole GetEcole()
+        //{
+        //    Ecole ecole = (Ecole)ecoleRepo.Get();
+        //    if (ecole != null)
+        //        if (!string.IsNullOrEmpty(ecole.Logo.ToString()))
+        //            ecole.Logo = Path.Combine(dbFolder, "logo", ecole.Logo);
+        //    return ecole;
+        //}
+        public void DeleteEcole(Ecole ecole)
         {
-            throw new NotImplementedException();
+            ecoleRepo.Remove(ecole);
         }
 
-        public Ecole GetEcole()
+
+        public IEnumerable<Ecole> GetAllEcoles()
         {
-            Ecole ecole = ecoleRepo.Get();
-            if (ecole != null)
-                if (!string.IsNullOrEmpty(ecole.Logo))
-                    ecole.Logo = Path.Combine(dbFolder, "logo", ecole.Logo);
-            return ecole;
+            return ecoleRepo.Find();
         }
 
-        
+
+        public IEnumerable<Ecole> GetByNom(string nom)
+        {
+            return ecoleRepo.Find(x => x.NomEcole == nom);
+        }
+
+        public IEnumerable<Ecole> GetBy(Func<Ecole, bool> predicate)
+        {
+            return ecoleRepo.Find(predicate);
+        }
+
+        public void EditEcole(Ecole oldEcole, Ecole newEcole)
+        {
+            ecoleRepo.Set(oldEcole, newEcole);
+        }
+
+
     }
 }
 

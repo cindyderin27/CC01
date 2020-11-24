@@ -3,8 +3,10 @@ using CC01.BO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,145 +16,230 @@ namespace CC01.WinForms
 {
     public partial class FrmListeEcole : Form
     {
-        //private EcoleBLO ecoleBLO;
-        //private Action callBack;
-        //private Etudiant oldEtudiant;
+        private Action callback;
+        private EcoleBLO ecoleBLO;
+        private Ecole oldEco;
         public FrmListeEcole()
         {
             InitializeComponent();
+            dataGridViewEcole.AutoGenerateColumns = false;
+            ecoleBLO = new EcoleBLO(ConfigurationManager.AppSettings["DbFolder"]);
+            
         }
-
-        //private void btnCreerEcole_Click(object sender, EventArgs e)
-        //{
-        //    //Form f = new FrmEcoleModif(loadData);
-        //    //f.Show(); 
-
-        //}
-        private void loadData()
+        public FrmListeEcole(Action callback) : this()
         {
-            //string value = txtRecherchEcole.Text.ToLower();
-            //var etudiants = ecoleBLO.Get
-            //(
-            //    x =>
-            //    x.NomEcole.ToLower().Contains(value) ||
-            //    x.EmailEcole.ToLower().Contains(value)
-            //).OrderBy(x => x.Matricule).ToArray();
-            //dataGridView2.DataSource = null;
-            //dataGridView2.DataSource = etudiants;
-            ////lblRowCount.Text = $"{dataGridView1.RowCount} rows";
-            //dataGridView2.ClearSelection();
+            this.callback = callback;
+        }
+        
+        public FrmListeEcole(Ecole ecole, Action callback) : this(callback)
+        {
+            this.oldEco = ecole;
+            txtNomEcole.Text = ecole.NomEcole;
+            txtEmailEcole.Text = ecole.EmailEcole;
+            txtContactEcole.Text = ecole.ContactEcole.ToString();
+            pictureBoxLogo.Image = ecole.Logo != null ? Image.FromStream(new MemoryStream(ecole.Logo)) : null;
+        }
+        private void FrmListeEcole_Load(object sender, EventArgs e)
+        {
+            loadData();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void lblNom_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAnnuler_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void pictureBoxLogo_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Choose a picture";
-            ofd.Filter = "Image files|*.jpg;*.jpeg;*.png;*.gif";
+            ofd.Title = "Choisissez le logo";
+            ofd.Filter = "Image File|*.jpg;*.jpeg;*.png;*.gif";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                pictureBox1.ImageLocation = ofd.FileName;
+                pictureBoxLogo.ImageLocation = ofd.FileName;
             }
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            pictureBox1.ImageLocation = null;
         }
 
         private void btnEnregistrer_Click(object sender, EventArgs e)
         {
-            //    try
-            //    {
-            //        checkForm();
+            try
+            {
+                CheckForm();
 
-            //        Etudiant newEtudiant = new Etudiant
-            //        (
-            //        txtMatricule.Text.ToUpper(),
-            //        txtNom.Text,
-            //        txtPrenom.Text,
-            //        dateTimePicker1.Text,
-            //        txtLieu.Text,
-            //        txtEmail.Text,
-            //        long.Parse(txtContact.Text),
-            //         !string.IsNullOrEmpty(pictureBox1.ImageLocation) ? File.ReadAllBytes(pictureBox1.ImageLocation) : this.oldEtudiant?.Photo
-            //        );
-            //        if (newEtudiant.Photo != null)
-            //        {
-            //            pictureBox1.Image = Image.FromStream(new MemoryStream((byte[])newEtudiant.Photo));
-            //        }
+                Ecole newEco = new Ecole(
+                    !String.IsNullOrEmpty(pictureBoxLogo.ImageLocation) ? File.ReadAllBytes(pictureBoxLogo.ImageLocation) : this.oldEco?.Logo,
+                    txtNomEcole.Text.ToUpper(),
+                     long.Parse(txtContactEcole.Text),
+                    txtEmailEcole.Text
+                    );
 
-            //        EtudiantBLO etudiantBLO = new EtudiantBLO(ConfigurationManager.AppSettings["DbFolder"]);
+                EcoleBLO ecoBlo = new EcoleBLO(ConfigurationManager.AppSettings["DbFolder"]);
+                if (this.oldEco == null)
+                {
+                    ecoBlo.CreateEcole(newEco);
+                }
+                else
+                {
+                    ecoBlo.EditEcole(oldEco, newEco);
+                }
+                ecoBlo.CreateEcole(newEco);
+                MessageBox.Show(
+                    "Enregistrement éffectué !",
+                     "Confirmé",
+                     MessageBoxButtons.OK,
+                     MessageBoxIcon.Information
+                    );
+                if (callback != null)
+                    callback();
 
-            //        if (this.oldEtudiant == null)
-            //            etudiantBLO.CreateEtudiant(newEtudiant);
-            //        else
-            //            etudiantBLO.EditEtudiant(oldEtudiant, newEtudiant);
+                if (oldEco != null)
+                    Close();
+                txtNomEcole.Clear();
+                txtEmailEcole.Clear();
+                txtContactEcole.Clear();
+                txtNomEcole.Focus();
+            }
+            catch (TypingException ex)
+            {
 
-            //        MessageBox.Show
-            //        (
-            //            "Save done !",
-            //            "Confirmation",
-            //            MessageBoxButtons.OK,
-            //            MessageBoxIcon.Information
-            //        );
+                MessageBox.Show
+                    (
+                    ex.Message,
+                    "Typing error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                   );
+            }
+            catch (DuplicateNameException ex)
+            {
 
-            //        if (callBack != null)
-            //            callBack();
+                MessageBox.Show
+                    (
+                    ex.Message,
+                    "Duplicate error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                   );
+            }
+            catch (KeyNotFoundException ex)
+            {
 
-            //        if (oldEtudiant != null)
-            //            Close();
+                MessageBox.Show
+                    (
+                    ex.Message,
+                    "Not found error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                   );
+            }
 
-            //        txtMatricule.Clear();
-            //        txtNom.Clear();
-            //        txtPrenom.Clear();
-            //        txtContact.Clear();
-            //        txtEmail.Clear();
-            //        txtLieu.Clear();
-            //        txtMatricule.Focus();
+            catch (Exception ex)
+            {
+                ex.WriteToFile();
+                using (StreamWriter sw =new StreamWriter("app.log", true))
+                 {
+                  sw.WriteLine(ex.ToString());
+                }
+                MessageBox.Show
+                    (
+                    "An Error occured! Please try again",
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                   );
+            }
+            loadData();
+        }
+        private void loadData()
+        {
+            string value = txtRecherchEcole.Text.ToLower();
+            var ecoles = ecoleBLO.GetBy
+            (
+                x =>
+                x.NomEcole.ToLower().Contains(value)
+            ).OrderBy(x => x.NomEcole).ToArray();
+            dataGridViewEcole.DataSource = null;
+            dataGridViewEcole.DataSource = ecoles;
+            //lblRowCount.Text = $"{dataGridView1.RowCount} rows";
+            dataGridViewEcole.ClearSelection();
+        }
+        private void CheckForm()
+        {
+            string text = string.Empty;
+            txtNomEcole.BackColor = Color.White;
+            txtNomEcole.BackColor = Color.White;
+            if (string.IsNullOrWhiteSpace(txtNomEcole.Text))
+            {
+                text += "-------------Please enter the school name!\n";
+                txtNomEcole.BackColor = Color.Pink;
+            }
 
-            //    }
-            //    catch (TypingException ex)
-            //    {
-            //        MessageBox.Show
-            //       (
-            //           ex.Message,
-            //           "Typing error",
-            //           MessageBoxButtons.OK,
-            //           MessageBoxIcon.Warning
-            //       );
-            //    }
-            //    catch (DuplicateNameException ex)
-            //    {
-            //        MessageBox.Show
-            //       (
-            //           ex.Message,
-            //           "Duplicate error",
-            //           MessageBoxButtons.OK,
-            //           MessageBoxIcon.Warning
-            //       );
-            //    }
-            //    catch (KeyNotFoundException ex)
-            //    {
-            //        MessageBox.Show
-            //       (
-            //           ex.Message,
-            //           "Not found error",
-            //           MessageBoxButtons.OK,
-            //           MessageBoxIcon.Warning
-            //       );
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        ex.WriteToFile();
-            //        MessageBox.Show
-            //       (
-            //           "An error occurred! Please try again later.",
-            //           "Erreur",
-            //           MessageBoxButtons.OK,
-            //           MessageBoxIcon.Error
-            //       );
-            //    }
-            //}
+            if (string.IsNullOrWhiteSpace(txtContactEcole.Text))
+            {
+                text += "-------- Please enter the name! \n";
+                txtContactEcole.BackColor = Color.Pink;
+            }
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                throw new TypingException(text);
+            }
+        }
+
+        private void btnModifier_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewEcole.SelectedRows.Count > 0)
+            {
+                for (int i = 0; i < dataGridViewEcole.SelectedRows.Count; i++)
+                {
+                    Form f = new FrmListeEcole
+                        (
+                            dataGridViewEcole.SelectedRows[i].DataBoundItem as Ecole,
+                            loadData
+                        );
+                    this.Hide();
+                    f.Show();
+                    f.WindowState = FormWindowState.Maximized;
+                }
+
+            }
+        }
+
+        private void btnSupprimer_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewEcole.SelectedRows.Count > 0)
+            {
+                if (
+                    MessageBox.Show
+                    (
+                        "Do you really want to delete this student(s)?",
+                        "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question
+                    ) == DialogResult.Yes
+                )
+                {
+                    for (int i = 0; i < dataGridViewEcole.SelectedRows.Count; i++)
+                    {
+                        ecoleBLO.DeleteEcole(dataGridViewEcole.SelectedRows[i].DataBoundItem as Ecole);
+                    }
+                    loadData();
+                }
+            }
+        }
+
+        private void txtRecherchEcole_TextChanged(object sender, EventArgs e)
+        {
+            loadData();
+        }
+
+        private void dataGridViewEcole_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnModifier_Click(sender, e);
         }
     }
+
 }

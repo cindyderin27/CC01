@@ -24,7 +24,8 @@ namespace CC01.BO
         {
 
         }
-        public Etudiant(string matricule,string nom, string preNom, string dateNais, string lieuNais,string email, long contact, byte[] photo)
+        public Etudiant(string matricule,string nom, string preNom, 
+            string dateNais, string lieuNais,string email, long contact, byte[] photo)
         {
             Matricule = matricule;
             Nom = nom;           

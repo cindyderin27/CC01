@@ -8,18 +8,13 @@ namespace CC01.BO
 {
     public class Ecole
     {
-        
         public string NomEcole { get; set; }
-       
         public string EmailEcole { get; set; }
         public long ContactEcole { get; set; }
-        public string Logo { get; set; }
+        public byte[] Logo { get; set; }
 
-        public Ecole()
-        {
 
-        }
-        public Ecole(string logo, string nom, long tel, string email)
+        public Ecole(byte[] logo, string nom, long tel, string email)
         {
             Logo = logo;
             NomEcole = nom;
@@ -27,9 +22,11 @@ namespace CC01.BO
             EmailEcole = email;
         }
 
+       
+
         public override bool Equals(object obj)
         {
-            return obj is Ecole ecole &&
+          return obj is Ecole ecole &&
                    NomEcole.Equals(ecole.NomEcole, StringComparison.OrdinalIgnoreCase); ;
         }
 
@@ -39,3 +36,4 @@ namespace CC01.BO
         }
     }
 }
+
