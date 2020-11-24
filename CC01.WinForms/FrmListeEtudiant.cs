@@ -98,7 +98,8 @@ namespace CC01.WinForms
                     txtLieu.Text,
                     txtEmail.Text,
                     long.Parse(txtContact.Text),
-                    !String.IsNullOrEmpty(pictureBox1.ImageLocation) ? File.ReadAllBytes(pictureBox1.ImageLocation) : this.oldEtu?.Photo
+                    !String.IsNullOrEmpty(pictureBox1.ImageLocation) ? File.ReadAllBytes(pictureBox1.ImageLocation) : this.oldEtu?.Photo,
+                    !String.IsNullOrEmpty(pictureBoxQR.ImageLocation) ? File.ReadAllBytes(pictureBoxQR.ImageLocation) : this.oldEtu?.QrCode
                     );
 
                 EtudiantBLO etuBlo = new EtudiantBLO(ConfigurationManager.AppSettings["DbFolder"]);
@@ -284,7 +285,7 @@ namespace CC01.WinForms
                 new ListeEtudiantImprimer
                 (
                     p.Photo,
-                    
+                    p.QrCode,
                     p.Matricule,
                     p.Nom,
                     p.PreNom,

@@ -16,19 +16,22 @@ namespace CC01.WinForms
         public DateTime DateNais { get; set; }
         public string LieuNais { get; set; }
         public byte[] Photo { get; set; }
-       // public byte[] Logo { get; set; }
+        public byte[] QrCode { get; set; }
+       
+       //public byte[] Logo { get; set; }
         
        
         public ListeEtudiantImprimer()
         {
 
         }
-        public ListeEtudiantImprimer(byte[] photo,string matricule, string nom, string prenom,
+        public ListeEtudiantImprimer(byte[] qrCode, byte[] photo,string matricule, string nom, string prenom,
               DateTime dateNais, string email, long contact, string lieu
           )
         {
             Photo = photo;
-            //Logo = logo;
+            QrCode = qrCode;
+             //Logo = logo;
             Matricule = matricule;
             Nom = nom;
             PreNom = prenom;

@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmListeEcole));
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabelPhoto = new System.Windows.Forms.LinkLabel();
             this.txtRecherchEcole = new System.Windows.Forms.TextBox();
@@ -45,7 +47,7 @@
             this.txtNomEcole = new System.Windows.Forms.TextBox();
             this.lblNom = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,32 +73,33 @@
             this.linkLabelPhoto.Location = new System.Drawing.Point(165, 35);
             this.linkLabelPhoto.Name = "linkLabelPhoto";
             this.linkLabelPhoto.Size = new System.Drawing.Size(17, 16);
-            this.linkLabelPhoto.TabIndex = 2;
+            this.linkLabelPhoto.TabIndex = 3;
             this.linkLabelPhoto.TabStop = true;
             this.linkLabelPhoto.Text = "X";
             // 
             // txtRecherchEcole
             // 
-            this.txtRecherchEcole.Location = new System.Drawing.Point(630, 46);
+            this.txtRecherchEcole.Location = new System.Drawing.Point(586, 46);
             this.txtRecherchEcole.Name = "txtRecherchEcole";
-            this.txtRecherchEcole.Size = new System.Drawing.Size(441, 20);
-            this.txtRecherchEcole.TabIndex = 3;
+            this.txtRecherchEcole.Size = new System.Drawing.Size(504, 20);
+            this.txtRecherchEcole.TabIndex = 6;
             this.txtRecherchEcole.TextChanged += new System.EventHandler(this.txtRecherchEcole_TextChanged);
             // 
             // dataGridViewEcole
             // 
+            this.dataGridViewEcole.AllowUserToOrderColumns = true;
             this.dataGridViewEcole.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEcole.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
             this.Column4});
-            this.dataGridViewEcole.Location = new System.Drawing.Point(630, 72);
+            this.dataGridViewEcole.Location = new System.Drawing.Point(586, 72);
             this.dataGridViewEcole.Name = "dataGridViewEcole";
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridViewEcole.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewEcole.Size = new System.Drawing.Size(441, 353);
-            this.dataGridViewEcole.TabIndex = 4;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dataGridViewEcole.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewEcole.Size = new System.Drawing.Size(504, 353);
+            this.dataGridViewEcole.TabIndex = 7;
             this.dataGridViewEcole.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEcole_CellDoubleClick);
             // 
             // pictureBoxLogo
@@ -117,7 +120,7 @@
             this.btnAnnuler.Location = new System.Drawing.Point(286, 363);
             this.btnAnnuler.Name = "btnAnnuler";
             this.btnAnnuler.Size = new System.Drawing.Size(92, 31);
-            this.btnAnnuler.TabIndex = 11;
+            this.btnAnnuler.TabIndex = 5;
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.UseVisualStyleBackColor = true;
             this.btnAnnuler.Click += new System.EventHandler(this.btnAnnuler_Click);
@@ -128,7 +131,7 @@
             this.btnEnregistrer.Location = new System.Drawing.Point(54, 363);
             this.btnEnregistrer.Name = "btnEnregistrer";
             this.btnEnregistrer.Size = new System.Drawing.Size(92, 31);
-            this.btnEnregistrer.TabIndex = 10;
+            this.btnEnregistrer.TabIndex = 4;
             this.btnEnregistrer.Text = "Enregistrer";
             this.btnEnregistrer.UseVisualStyleBackColor = true;
             this.btnEnregistrer.Click += new System.EventHandler(this.btnEnregistrer_Click);
@@ -139,7 +142,7 @@
             this.btnSupprimer.Location = new System.Drawing.Point(1096, 305);
             this.btnSupprimer.Name = "btnSupprimer";
             this.btnSupprimer.Size = new System.Drawing.Size(92, 31);
-            this.btnSupprimer.TabIndex = 15;
+            this.btnSupprimer.TabIndex = 9;
             this.btnSupprimer.Text = "Supprimer";
             this.btnSupprimer.UseVisualStyleBackColor = true;
             this.btnSupprimer.Click += new System.EventHandler(this.btnSupprimer_Click);
@@ -150,7 +153,7 @@
             this.btnModifier.Location = new System.Drawing.Point(1096, 124);
             this.btnModifier.Name = "btnModifier";
             this.btnModifier.Size = new System.Drawing.Size(92, 31);
-            this.btnModifier.TabIndex = 14;
+            this.btnModifier.TabIndex = 8;
             this.btnModifier.Text = "Modifier";
             this.btnModifier.UseVisualStyleBackColor = true;
             this.btnModifier.Click += new System.EventHandler(this.btnModifier_Click);
@@ -160,7 +163,7 @@
             this.txtContactEcole.Location = new System.Drawing.Point(277, 211);
             this.txtContactEcole.Name = "txtContactEcole";
             this.txtContactEcole.Size = new System.Drawing.Size(261, 20);
-            this.txtContactEcole.TabIndex = 37;
+            this.txtContactEcole.TabIndex = 2;
             // 
             // lblEmail
             // 
@@ -177,7 +180,7 @@
             this.txtEmailEcole.Location = new System.Drawing.Point(277, 164);
             this.txtEmailEcole.Name = "txtEmailEcole";
             this.txtEmailEcole.Size = new System.Drawing.Size(261, 20);
-            this.txtEmailEcole.TabIndex = 36;
+            this.txtEmailEcole.TabIndex = 1;
             // 
             // lblContact
             // 
@@ -194,7 +197,7 @@
             this.txtNomEcole.Location = new System.Drawing.Point(277, 72);
             this.txtNomEcole.Name = "txtNomEcole";
             this.txtNomEcole.Size = new System.Drawing.Size(261, 20);
-            this.txtNomEcole.TabIndex = 35;
+            this.txtNomEcole.TabIndex = 0;
             // 
             // lblNom
             // 
@@ -211,7 +214,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(627, 27);
+            this.label2.Location = new System.Drawing.Point(583, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(88, 16);
             this.label2.TabIndex = 41;
@@ -220,8 +223,16 @@
             // Column1
             // 
             this.Column1.DataPropertyName = "Logo";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle1.NullValue")));
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column1.FillWeight = 449.2386F;
             this.Column1.HeaderText = "Logo";
             this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column1.Width = 177;
             // 
             // Column2
             // 
@@ -290,7 +301,7 @@
         private System.Windows.Forms.TextBox txtNomEcole;
         private System.Windows.Forms.Label lblNom;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewImageColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;

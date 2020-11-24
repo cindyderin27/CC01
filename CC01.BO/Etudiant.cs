@@ -18,6 +18,7 @@ namespace CC01.BO
         public long Contact { get; set; }
         public string Email { get; set; }
         public byte[] Photo { get; set; }
+        public byte[] QrCode { get; set; }
        
 
         public Etudiant()
@@ -25,7 +26,7 @@ namespace CC01.BO
 
         }
         public Etudiant(string matricule,string nom, string preNom, 
-            string dateNais, string lieuNais,string email, long contact, byte[] photo)
+            string dateNais, string lieuNais,string email, long contact, byte[] photo, byte[] qrCode)
         {
             Matricule = matricule;
             Nom = nom;           
@@ -35,7 +36,9 @@ namespace CC01.BO
             Email = email;
             Contact = contact;
             Photo = photo;
-           
+            QrCode = qrCode;
+
+
         }
 
         public override bool Equals(object obj)
