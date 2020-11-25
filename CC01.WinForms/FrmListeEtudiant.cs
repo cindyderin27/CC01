@@ -271,7 +271,7 @@ namespace CC01.WinForms
         private void btnImprimer_Click_1(object sender, EventArgs e)
         {
             List<ListeEtudiantImprimer> items = new List<ListeEtudiantImprimer>();
-            Ecole ecole = ecoleBLO.GetEcole();
+           // Ecole ecole = ecoleBLO.GetEcole();
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 Etudiant p = dataGridView1.Rows[i].DataBoundItem as Etudiant;
@@ -285,11 +285,8 @@ namespace CC01.WinForms
                     p.PreNom,
                     DateTime.Parse(p.DateNais),
                     p.LieuNais,
-                    p.Contact,
-                    ecole?.EmailEcole
-
-
-
+                    p.Contact
+                  //  ecole?.EmailEcole
                     )
                 );
 

@@ -18,7 +18,7 @@ namespace CC01.WinForms
         public DateTime DateNais { get; set; }
         public string LieuNais { get; set; }
         public byte[] Photo { get; set; }
-        public string EmailEcole { get; set; }
+       // public string EmailEcole { get; set; }
 
 
         //public byte[] Logo { get; set; }
@@ -29,7 +29,7 @@ namespace CC01.WinForms
 
         }
         public ListeEtudiantImprimer( byte[] photo,string matricule, string nom, string prenom,
-              DateTime dateNais, string email, long contact, string lieu, string emailEcole
+              DateTime dateNais, string email, long contact, string lieu
           )
         {
             Photo = photo;
@@ -42,10 +42,10 @@ namespace CC01.WinForms
             LieuNais = lieu;
             Contact = contact;
             Email = email;
-            EmailEcole = emailEcole;
+           
         }
 
-        public ListeEtudiantImprimer(byte[] photo, string matricule, string nom, string preNom, DateTime dateTime, string lieuNais, long contact, string emailEcole)
+        public ListeEtudiantImprimer(byte[] photo, string matricule, string nom, string preNom, DateTime dateTime, string lieuNais, long contact)
         {
             Photo = photo;
             Matricule = matricule;
@@ -54,7 +54,7 @@ namespace CC01.WinForms
             this.dateTime = dateTime;
             LieuNais = lieuNais;
             Contact = contact;
-            EmailEcole = emailEcole;
+           
         }
     }
 }

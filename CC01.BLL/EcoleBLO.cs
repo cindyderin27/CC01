@@ -74,10 +74,14 @@ namespace CC01.BLL
             ecoleRepo.Set(oldEcole, newEcole);
         }
 
-        public Ecole GetEcole()
-        {
-            throw new NotImplementedException();
-        }
+        //public Ecole GetEcole()
+        //{
+        //    Ecole ecole = (Ecole)ecoleRepo.Get();
+        //    if (ecole != null)
+        //        if (!string.IsNullOrEmpty(ecole.Logo.ToString()))
+        //             ecole.Logo = Path.Combine(dbFolder, "logo", ecole.Logo.ToString());
+        //            return ecole;
+        //}
     }
 }
 
