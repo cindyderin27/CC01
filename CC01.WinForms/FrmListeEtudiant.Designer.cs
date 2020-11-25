@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecherch = new System.Windows.Forms.Label();
             this.txtRecherch = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -56,7 +56,6 @@
             this.lblNom = new System.Windows.Forms.Label();
             this.pictureBoxQR = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -99,7 +98,6 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column9,
             this.Column8,
             this.Column1,
             this.Column2,
@@ -111,8 +109,8 @@
             this.dataGridView1.Location = new System.Drawing.Point(732, 83);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(460, 404);
             this.dataGridView1.TabIndex = 11;
@@ -348,18 +346,13 @@
             this.label2.TabIndex = 36;
             this.label2.Text = "Qr Code";
             // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "QrCode";
-            this.Column9.HeaderText = "QrCode";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            // 
             // Column8
             // 
             this.Column8.DataPropertyName = "Photo";
+            this.Column8.FillWeight = 596.9543F;
             this.Column8.HeaderText = "Photo";
             this.Column8.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Column8.MinimumWidth = 200;
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
             this.Column8.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -368,6 +361,7 @@
             // Column1
             // 
             this.Column1.DataPropertyName = "Nom";
+            this.Column1.FillWeight = 29.00653F;
             this.Column1.HeaderText = "Nom";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -375,6 +369,7 @@
             // Column2
             // 
             this.Column2.DataPropertyName = "PreNom";
+            this.Column2.FillWeight = 29.00653F;
             this.Column2.HeaderText = "Prenom";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
@@ -382,6 +377,7 @@
             // Column3
             // 
             this.Column3.DataPropertyName = "Matricule";
+            this.Column3.FillWeight = 29.00653F;
             this.Column3.HeaderText = "Matricule";
             this.Column3.MinimumWidth = 20;
             this.Column3.Name = "Column3";
@@ -390,6 +386,7 @@
             // Column4
             // 
             this.Column4.DataPropertyName = "Contact";
+            this.Column4.FillWeight = 29.00653F;
             this.Column4.HeaderText = "Contact";
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
@@ -397,6 +394,7 @@
             // Column5
             // 
             this.Column5.DataPropertyName = "Email";
+            this.Column5.FillWeight = 29.00653F;
             this.Column5.HeaderText = "Email";
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
@@ -404,6 +402,7 @@
             // Column6
             // 
             this.Column6.DataPropertyName = "DateNais";
+            this.Column6.FillWeight = 29.00653F;
             this.Column6.HeaderText = "DateNais";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
@@ -411,6 +410,7 @@
             // Column7
             // 
             this.Column7.DataPropertyName = "LieuNais";
+            this.Column7.FillWeight = 29.00653F;
             this.Column7.HeaderText = "Lieu";
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
@@ -488,7 +488,6 @@
         private System.Windows.Forms.Label lblNom;
         private System.Windows.Forms.PictureBox pictureBoxQR;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewImageColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

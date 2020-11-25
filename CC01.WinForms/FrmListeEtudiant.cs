@@ -98,8 +98,8 @@ namespace CC01.WinForms
                     txtLieu.Text,
                     txtEmail.Text,
                     long.Parse(txtContact.Text),
-                    !String.IsNullOrEmpty(pictureBox1.ImageLocation) ? File.ReadAllBytes(pictureBox1.ImageLocation) : this.oldEtu?.Photo,
-                    !String.IsNullOrEmpty(pictureBoxQR.ImageLocation) ? File.ReadAllBytes(pictureBoxQR.ImageLocation) : this.oldEtu?.QrCode
+                    !String.IsNullOrEmpty(pictureBox1.ImageLocation) ? File.ReadAllBytes(pictureBox1.ImageLocation) : this.oldEtu?.Photo
+                   
                     );
 
                 EtudiantBLO etuBlo = new EtudiantBLO(ConfigurationManager.AppSettings["DbFolder"]);
@@ -111,7 +111,7 @@ namespace CC01.WinForms
                 {
                     etuBlo.EditEtudiant(oldEtu, newEtu);
                 }
-                etuBlo.CreateEtudiant(newEtu);
+                // etuBlo.CreateEtudiant(newEtu);
                 MessageBox.Show(
                     "Enregistrement éffectué !",
                      "Confirmé",
@@ -271,7 +271,7 @@ namespace CC01.WinForms
         private void btnImprimer_Click_1(object sender, EventArgs e)
         {
             List<ListeEtudiantImprimer> items = new List<ListeEtudiantImprimer>();
-            //Ecole ecole = ecoleBLO.GetEcole();
+            Ecole ecole = ecoleBLO.GetEcole();
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 Etudiant p = dataGridView1.Rows[i].DataBoundItem as Etudiant;
@@ -280,14 +280,15 @@ namespace CC01.WinForms
                 new ListeEtudiantImprimer
                 (
                     p.Photo,
-                    p.QrCode,
                     p.Matricule,
                     p.Nom,
                     p.PreNom,
                     DateTime.Parse(p.DateNais),
                     p.LieuNais,
                     p.Contact,
-                    p.Email
+                    ecole?.EmailEcole
+
+
 
                     )
                 );

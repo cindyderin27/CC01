@@ -74,7 +74,10 @@ namespace CC01.BLL
             ecoleRepo.Set(oldEcole, newEcole);
         }
 
-
+        public Ecole GetEcole()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

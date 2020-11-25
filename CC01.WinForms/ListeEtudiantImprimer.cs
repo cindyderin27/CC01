@@ -8,6 +8,8 @@ namespace CC01.WinForms
 {
     class ListeEtudiantImprimer
     {
+        private DateTime dateTime;
+
         public string Nom { get; set; }
         public string PreNom { get; set; }
         public string Matricule   { get; set; }
@@ -16,21 +18,22 @@ namespace CC01.WinForms
         public DateTime DateNais { get; set; }
         public string LieuNais { get; set; }
         public byte[] Photo { get; set; }
-        public byte[] QrCode { get; set; }
-       
-       //public byte[] Logo { get; set; }
-        
-       
+        public string EmailEcole { get; set; }
+
+
+        //public byte[] Logo { get; set; }
+
+
         public ListeEtudiantImprimer()
         {
 
         }
-        public ListeEtudiantImprimer(byte[] qrCode, byte[] photo,string matricule, string nom, string prenom,
-              DateTime dateNais, string email, long contact, string lieu
+        public ListeEtudiantImprimer( byte[] photo,string matricule, string nom, string prenom,
+              DateTime dateNais, string email, long contact, string lieu, string emailEcole
           )
         {
             Photo = photo;
-            QrCode = qrCode;
+           
              //Logo = logo;
             Matricule = matricule;
             Nom = nom;
@@ -39,8 +42,19 @@ namespace CC01.WinForms
             LieuNais = lieu;
             Contact = contact;
             Email = email;
+            EmailEcole = emailEcole;
         }
 
-        
+        public ListeEtudiantImprimer(byte[] photo, string matricule, string nom, string preNom, DateTime dateTime, string lieuNais, long contact, string emailEcole)
+        {
+            Photo = photo;
+            Matricule = matricule;
+            Nom = nom;
+            PreNom = preNom;
+            this.dateTime = dateTime;
+            LieuNais = lieuNais;
+            Contact = contact;
+            EmailEcole = emailEcole;
+        }
     }
 }
